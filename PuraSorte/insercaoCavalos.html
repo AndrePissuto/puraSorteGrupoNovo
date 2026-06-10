@@ -117,19 +117,25 @@
 
     }
 
-    function jogar() {
-        let acm = 0;
+    function esperar(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
 
+    async function jogar() {
         for (let j = 0; j < voltas; j++) {
-
             for (let i = 0; i < vt_cavalos.length; i++) {
                 vt_corrida_cavalos[i] = Number((Math.random() * 2 + 7).toFixed(1));
                 console.log(`${vt_cavalos[i]}: ${vt_corrida_cavalos[i]}`);
                 div_msg.innerHTML += `${vt_cavalos[i]}: ${vt_corrida_cavalos[i]}<br><br>`;
             }
 
+            if (j < voltas - 1) {
+                await esperar(2000); // espera 2 segundos antes da próxima volta
+            }
         }
     }
+
+    jogar();
 
 
 
