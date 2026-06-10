@@ -5,15 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="estiloMain.css">
+    <link rel="stylesheet" href="ranking.css">
+    <link rel="stylesheet" href="style.css">
     <title>Inserção de cavalos e voltas</title>
 
 </head>
 
 <body>
-    <div class="main colunar">
-        <h1> Configure o turfe!</h1>
+    <div id="div_principal" class="main colunar">
+        <h1 id="titulo-turfe"> Configure o turfe!</h1>
         <div id="QTDS" class="div_cards">
-            <div class="div_inputs">
+            <div class="div_inputs" id="qtd_cavalos">
                 <div class="icones">
                     <img src="./img/icone-cavalo.png" alt="icone-cavalo">
                 </div>
@@ -24,7 +26,7 @@
                 </div>
             </div>
 
-            <div class="div_inputs">
+            <div class="div_inputs" id="qtd_voltas">
                 <div class="icones">
                     <img src="./img/icone-volta.png" alt="icone-volta">
                 </div>
@@ -35,29 +37,65 @@
                         placeholder="Quantidade de voltas">
                 </div>
             </div>
+
+            <div class="div_inputs colunar" id="nomes" style="display: none; width: 100%;">
+                <img src="./img/icone-corredor.png" alt="imagem-corredor">
+                <p class="titulo-valor-aposta">Qual o nome do pocotó?</p>
+                <input class="input-aposta" type="text" name="" id="nome_cavalos" placeholder="Nome do cavalo">
+                <div class="titulo-valor-aposta" id="div_msg"></div>
+            </div>
+
+            <div class="div_inputs" id="corrida" style="display: none;">
+                <div id="pista" class="pista"></div>
+            </div>
+
         </div>
 
-        <button class="botao-apostar" onclick="adicionarCavalosEVoltas()">ADICIONAR</button>
-
+        <button id="btn-add" class="botao-apostar" onclick="adicionarCavalosEVoltas()">ADICIONAR</button>
+        <button style="display: none;" id="btn-add-nome" class="botao-apostar" onclick="adicionarNomes()">INSERIR
+            NOME</button>
+        <button style="display: none;" id="btn-corrida" class="botao-apostar" onclick="iniciarCorrida()">VAMOS
+            CORRER!</button>
     </div>
 
-    <div id="Nomes" style="display: none;">
-        <input type="text" name="" id="nome_cavalos" placeholder="nome do cavalo">
-        <button onclick="adicionarNomes()">Inserir</button>
+    <div style="display: none;" id="ranking" class="div-select">
+        <div class="container ranking">
+            <div class="ranking_item">
+                <div class="imagem">
+                    <img style="width: 150px;" src="img/icone-cavalo.png">
+                </div>
+                <p class="ranking__city">Segundo</p>
+                <div class="ranking_fundo">
+
+                    <div class="ranking__rank segundo">2</div>
+                </div>
+            </div>
+
+            <div class="ranking_item">
+                <div class="imagem">
+                    <img style="width: 150px;" src="img/icone-cavalo.png">
+                    <img src="img/icone-campeao.png" style="width: 140px;" alt="">
+                </div>
+                <p class="ranking__city">Primeiro Lugar</p>
+                <div class="ranking_fundo">
+
+                    <div class="ranking__rank primeiro">1
+                    </div>
+                </div>
+            </div>
+
+            <div class="ranking_item">
+                <div class="imagem">
+                    <img style="width: 150px;;" src="img/icone-cavalo.png">
+                </div>
+                <p class="ranking__city">Terceiro</p>
+                <div class="ranking_fundo">
+
+                    <div class="ranking__rank terceiro">3</div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div id="Corrida" style="display: none;">
-        Vamos correr!
-        <button onclick="jogar()">Correr</button>
-        <div id="div_msg"></div>
-    </div>
-
-
-    <div class="ranking" style="display: none;">
-        <button onclick="ranking()" class="botao-ranking">Ranking</button>
-    </div>
-
-
 </body>
 
 </html>
@@ -78,9 +116,11 @@
         } else if (voltas <= 0 || voltas > 10 || voltas % 1 > 0) {
             alert("A quantidade de voltas deve estar entre 1 e 10 e deve ser um numero inteiro")
         } else {
-            QTDS.style.display = 'none';
-            Nomes.style.display = 'flex';
-            botaoDeInserir.style.display = 'none';
+            document.getElementById("qtd_cavalos").style.display = "none";
+            document.getElementById("qtd_voltas").style.display = "none";
+            document.getElementById("btn-add").style.display = "none";
+            document.getElementById("nomes").style.display = "flex";
+            document.getElementById("btn-add-nome").style.display = "block";
         }
     }
 
@@ -88,7 +128,9 @@
         let nome_cavalo = nome_cavalos.value.trim();
 
         if (vt_cavalos.length >= cavalos) {
-            alert("A corrida não possui esse número de cavalos! Você tentou inserir 1 a mais");
+            document.getElementById("nomes").style.display = "none";
+            document.getElementById("btn-add-nome").style.display = "none";
+            document.getElementById("btn-corrida").style.display = "block";
         } else {
             for (let i = 0; i < cavalos; i++) {
                 if (nome_cavalo.length < 3) {
@@ -100,47 +142,97 @@
                 } else {
                     vt_cavalos.push(nome_cavalo)
                     div_msg.innerHTML = vt_cavalos;
+                    document.getElementById("titulo-turfe").style.display = "none";
                     console.log(vt_cavalos)
                     break;
                 }
             }
         }
+    }
 
-        if (vt_cavalos.length == cavalos) {
-            Nomes.style.display = 'none';
-            Corrida.style.display = 'flex';
+    function criarCavalos() {
+
+        pista.innerHTML = "";
+        corredores = [];
+
+        let qtd = vt_cavalos.length;
+
+        for (let i = 0; i < qtd; i++) {
+
+            pista.innerHTML += `
+            <div class="raia">
+                <img
+                    id="c${i}"
+                    class="cavalo"
+                    src="./img/spirit-pixel.gif">
+            </div>
+        `;
         }
 
-    }
+        for (let i = 0; i < qtd; i++) {
 
+            corredores.push({
+                nome: `Cavalo ${i + 1}`,
+                posicao: 0,
+                elemento: document.getElementById(`c${i}`)
+            });
 
-
-
-    function ranking() {
-
-    }
-
-    function esperar(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
-    async function jogar() {
-        for (let j = 0; j < voltas; j++) {
-            for (let i = 0; i < vt_cavalos.length; i++) {
-                vt_corrida_cavalos[i] = Number((Math.random() * 2 + 7).toFixed(1));
-                console.log(`${vt_cavalos[i]}: ${vt_corrida_cavalos[i]}`);
-                div_msg.innerHTML += `${vt_cavalos[i]}: ${vt_corrida_cavalos[i]}<br><br>`;
-            }
-
-            if (j < voltas - 1) {
-                await esperar(2000); // espera 2 segundos antes da próxima volta
-            }
         }
     }
 
-    jogar();
+    function iniciarCorrida() {
+
+        document.getElementById("corrida").style.display = "flex";
+        document.getElementById("btn-corrida").style.display = "none";
 
 
+        criarCavalos();
+
+        let voltas = Number(ipt_qtdVoltas.value);
+        let voltaAtual = 0;
+
+        let intervalo = setInterval(() => {
+
+            for (let corredor of corredores) {
+
+                let sorteio = Math.floor(Math.random() * 10) + 1;
+
+                corredor.posicao += sorteio * 15;
+
+                corredor.elemento.style.transform =
+                    `translateX(${corredor.posicao}px)`;
+            }
+
+            voltaAtual++;
+
+            if (voltaAtual >= voltas) {
+
+                clearInterval(intervalo);
+                document.getElementById("corrida").style.display = "none";
+                mostrarResultado();
+            }
+
+        }, 1000);
+
+    }
+
+    function mostrarResultado() {
+
+        document.getElementById("div_principal").style.display = "none";
+        document.getElementById("ranking").style.display = "flex";
+
+        corredores.sort((a, b) => b.posicao - a.posicao);
+
+        console.log("Vencedor:", corredores[0].nome);
+
+        for (let i = 0; i < corredores.length; i++) {
+
+            console.log(
+                `${i + 1}° lugar - ${corredores[i].nome}`
+            );
+
+        }
+    }
 
 
 </script>

@@ -21,6 +21,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin: 0;
+    height: 100vh;
 }
 
 .div-titulo {
@@ -77,13 +79,13 @@ h1 {
     color: white;
     text-shadow:
         -2px -2px 0 black,
-         2px -2px 0 black,
-        -2px  2px 0 black,
-         2px  2px 0 black,
-         0px -2px 0 black,
-         0px  2px 0 black,
-        -2px  0px 0 black,
-         2px  0px 0 black;
+        2px -2px 0 black,
+        -2px 2px 0 black,
+        2px 2px 0 black,
+        0px -2px 0 black,
+        0px 2px 0 black,
+        -2px 0px 0 black,
+        2px 0px 0 black;
 }
 
 
@@ -149,6 +151,8 @@ h1 {
     color: white;
 }
 
+
+
 .input-aposta {
     font-family: "Pixelify Sans", sans-serif;
     width: 100%;
@@ -186,6 +190,15 @@ h1 {
         8px 8px 0 rgba(0, 0, 0, 0.3);
     font-size: 120%;
     padding: 16px 32px 16px 32px;
+    text-align: center;
+    align-content: center;
+    transition: 0.5s ease;
+    cursor: pointer;
+}
+
+.botao-apostar:hover{
+    scale: 1.025;
+    background-color: rgb(210, 189, 3);
 }
 
 
@@ -208,20 +221,25 @@ h1 {
 }
 
 
-.icones img{
+.icones img {
     width: 100px;
     height: 100px;
 }
 
-.textos{
+#nomes img {
+    width: 240px;
+    height: auto;
+}
+
+.textos {
     display: flex;
-    flex-direction: column;    
+    flex-direction: column;
     gap: 16px;
     font-size: 120%;
 }
 
 
-.div_cards{
+.div_cards {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -229,13 +247,15 @@ h1 {
     gap: 32px;
 }
 
-.botao_de_inserir{
+.botao_de_inserir {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: blue;
-    margin: 2%;;
-    button{
+    margin: 2%;
+    ;
+
+    button {
         width: 30%;
         height: 5vh;
     }
@@ -243,26 +263,79 @@ h1 {
 
 .div_inputs {
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    width: fit-content;
-    padding: 16px 32px 16px 32px;
+
+    width: 100%;
+    max-width: 1000px;
+
+    padding: 16px 32px;
     gap: 32px;
+
     background-color: #2B2D42;
+
     box-shadow:
         4px 0 0 #000,
         -4px 0 0 #000,
         0 4px 0 #000,
         0 -4px 0 #000,
-        8px 8px 0 rgba(0, 0, 0, 0.3);
-    align-items: center;
+        8px 8px 0 rgba(0,0,0,.3);
+
+    box-sizing: border-box;
+}
+
+
+.div_inputs input {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .colunar{
     display: flex;
     flex-direction: column;
-    margin: 0;
-    height: 100vh;
     gap: 32px;
+    min-width: 0;
+}
+
+#pista{
+    width: 1200px;
+    height: 600px;
+    background-image: url("./img/pista-bg.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+
+    padding-top: 90px;
+    padding-bottom: 70px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#div_msg{
+    width: 100%;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.raia{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid rgb(0, 0, 0);
+}
+
+.cavalo{
+    width: 100px;
+    transition: transform 1s linear;
+}
+
+
+.faixa{
+    height: 100px;
+    position: relative;
 }
