@@ -69,6 +69,24 @@ body {
     font-family: "Pixelify Sans", sans-serif;
 }
 
+h1 {
+    font-size: 60px;
+    font-family: "Pixelify Sans", sans-serif;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: white;
+    text-shadow:
+        -2px -2px 0 black,
+         2px -2px 0 black,
+        -2px  2px 0 black,
+         2px  2px 0 black,
+         0px -2px 0 black,
+         0px  2px 0 black,
+        -2px  0px 0 black,
+         2px  0px 0 black;
+}
+
+
 .select-cavalo {
     font-family: "Pixelify Sans", sans-serif;
     width: 70%;
@@ -124,16 +142,16 @@ body {
     padding: 2%;
 }
 
-.div-resposta {}
 
 .titulo-valor-aposta {
     font-size: 30px;
     font-family: "Pixelify Sans", sans-serif;
+    color: white;
 }
 
 .input-aposta {
     font-family: "Pixelify Sans", sans-serif;
-    width: 70%;
+    width: 100%;
     box-shadow:
         4px 0 0 #000,
         -4px 0 0 #000,
@@ -159,6 +177,7 @@ body {
 
 .botao-apostar {
     font-family: "Pixelify Sans", sans-serif;
+    width: 50%;
     box-shadow:
         4px 0 0 #000,
         -4px 0 0 #000,
@@ -166,15 +185,9 @@ body {
         0 -4px 0 #000,
         8px 8px 0 rgba(0, 0, 0, 0.3);
     font-size: 120%;
-    padding: 1%;
-    margin: 3%;
+    padding: 16px 32px 16px 32px;
 }
 
-
-.ranking{
-
-
-}
 
 
 .botao-ranking {
@@ -194,9 +207,10 @@ body {
     font-family: "Pixelify Sans", sans-serif;
 }
 
+
 .icones img{
-    width: 48px;
-    height: 48px;
+    width: 100px;
+    height: 100px;
 }
 
 .textos{
@@ -206,22 +220,13 @@ body {
     font-size: 120%;
 }
 
-.div_inputs{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 30%;
-    padding: 2%;
-    background-color: #2B2D42;
-}
 
 .div_cards{
     display: flex;
-    gap: 32px;
     justify-content: center;
     align-items: center;
-    background-color: aqua;
+
+    gap: 32px;
 }
 
 .botao_de_inserir{
@@ -234,4 +239,30 @@ body {
         width: 30%;
         height: 5vh;
     }
+}
+
+.div_inputs {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    padding: 16px 32px 16px 32px;
+    gap: 32px;
+    background-color: #2B2D42;
+    box-shadow:
+        4px 0 0 #000,
+        -4px 0 0 #000,
+        0 4px 0 #000,
+        0 -4px 0 #000,
+        8px 8px 0 rgba(0, 0, 0, 0.3);
+    align-items: center;
+}
+
+.colunar{
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    height: 100vh;
+    gap: 32px;
 }
