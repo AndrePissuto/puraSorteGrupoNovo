@@ -201,15 +201,19 @@ body {
 
 .textos{
     display: flex;
-    flex-direction: column;
-    
+    flex-direction: column;    
     gap: 16px;
+    font-size: 120%;
 }
 
 .div_inputs{
     display: flex;
     flex-direction: row;
-    width: 49%;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    padding: 2%;
+    background-color: #2B2D42;
 }
 
 .div_cards{
@@ -217,4 +221,17 @@ body {
     gap: 32px;
     justify-content: center;
     align-items: center;
+    background-color: aqua;
+}
+
+.botao_de_inserir{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: blue;
+    margin: 2%;;
+    button{
+        width: 30%;
+        height: 5vh;
+    }
 }
