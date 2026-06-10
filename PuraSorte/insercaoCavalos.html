@@ -10,32 +10,35 @@
 </head>
 
 <body>
-
-    <div id="QTDS" class="div_cards">
-
-        <div class="div_inputs">
-            <div class="icones">
-                <img style="width: 48px;" src="./img/icone-cavalo.png" alt="icone-cavalo">
+    <div class="main colunar">
+        <h1> Configure o turfe!</h1>
+        <div id="QTDS" class="div_cards">
+            <div class="div_inputs">
+                <div class="icones">
+                    <img src="./img/icone-cavalo.png" alt="icone-cavalo">
+                </div>
+                <div class="textos">
+                    <p class="titulo-valor-aposta">Quantos cavalos?</p>
+                    <input class="input-aposta" type="number" name="" id="ipt_qtdCavalo"
+                        placeholder="Quantidade de cavalos">
+                </div>
             </div>
-            <div class="textos">
-                Informe a quantidade de cavalos: <br>
-                <input type="number" name="" id="ipt_qtdCavalo" placeholder="Quantidade de cavalos">
+
+            <div class="div_inputs">
+                <div class="icones">
+                    <img src="./img/icone-volta.png" alt="icone-volta">
+                </div>
+
+                <div class="textos">
+                    <p class="titulo-valor-aposta">Quantas voltas?</p>
+                    <input class="input-aposta" type="number" name="" id="ipt_qtdVoltas"
+                        placeholder="Quantidade de voltas">
+                </div>
             </div>
         </div>
 
-        <div class="div_inputs">
-            <div class="icones">
-                <img style="width: 48px;" src="./img/icone-volta.png" alt="icone-volta">
-            </div>
+        <button class="botao-apostar" onclick="adicionarCavalosEVoltas()">ADICIONAR</button>
 
-            <div class="textos">
-                Informe a quantidade de voltas: <br>
-                <input type="number" name="" id="ipt_qtdVoltas" placeholder="Quantidade de voltas">
-            </div>
-        </div>
-    </div>
-    <div class="botao_de_inserir" id="botaoDeInserir">
-        <button onclick="adicionarCavalosEVoltas()">Inserir</button>
     </div>
 
     <div id="Nomes" style="display: none;">
