@@ -170,6 +170,51 @@ body {
     margin: 3%;
 }
 
+
+.ranking{
+
+
+}
+
+
+.botao-ranking {
+    font-family: "Pixelify Sans", sans-serif;
+    box-shadow:
+        4px 0 0 #000,
+        -4px 0 0 #000,
+        0 4px 0 #000,
+        0 -4px 0 #000,
+        8px 8px 0 rgba(0, 0, 0, 0.3);
+    font-size: 120%;
+    padding: 5%;
+    margin: 5%;
+}
+
 .div-resposta {
     font-family: "Pixelify Sans", sans-serif;
+}
+
+.icones img{
+    width: 48px;
+    height: 48px;
+}
+
+.textos{
+    display: flex;
+    flex-direction: column;
+    
+    gap: 16px;
+}
+
+.div_inputs{
+    display: flex;
+    flex-direction: row;
+    width: 49%;
+}
+
+.div_cards{
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    align-items: center;
 }

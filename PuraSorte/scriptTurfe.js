@@ -1,4 +1,3 @@
-
 let vt_cavalo1 = [];
 let vt_cavalo2 = [];
 let vt_cavalo3 = [];
@@ -46,7 +45,7 @@ function jogar() {
 
     if (valor < 0 || valor > qtd_fichasatual) {
         alert('Quantidade de fichas indisponível')
-    }else if(cavalo == 0){
+    } else if (cavalo == 0) {
         alert("Selecione um cavalo")
     }
     else {
@@ -188,9 +187,6 @@ function jogar() {
 }
 
 
-
-
-
 function selecionar() {
     let cavalo = ipt_cavalo.value;
 
@@ -203,3 +199,6 @@ function selecionar() {
 
 
 }
+
+
+

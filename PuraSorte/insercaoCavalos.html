@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estiloMain.css">
+    <title>Inserção de cavalos e voltas</title>
+
+</head>
+
+<body>
+
+    <div id="QTDS" class="div_cards">
+
+        <div class="div_inputs">
+            <div class="icones">
+                <img style="width: 48px;" src="./img/icone-cavalo.png" alt="icone-cavalo">
+            </div>
+            <div class="textos">
+                Informe a quantidade de cavalos: <br>
+                <input type="number" name="" id="ipt_qtdCavalo" placeholder="Quantidade de cavalos">
+            </div>
+        </div>
+
+        <div class="div-inputs">
+            <div>
+                <img style="width: 48px;" src="./img/icone-volta.png" alt="icone-volta">
+            </div>
+
+            <div class="textos">
+                Informe a quantidade de voltas: <br>
+                <input type="number" name="" id="ipt_qtdVoltas" placeholder="Quantidade de voltas">
+            </div>
+        </div>
+
+        <button onclick="adicionarCavalosEVoltas()">Inserir</button>
+    </div>
+
+    <div id="Nomes" style="display: none;">
+        <input type="text" name="" id="nome_cavalos" placeholder="nome do cavalo">
+        <button onclick="adicionarNomes()">Inserir</button>
+    </div>
+
+    <div id="Corrida" style="display: none;">
+        <h1>AQUI É PARA FAZER A CORRIDA!</h1>
+        <div id="div_msg"></div>
+    </div>
+
+
+    <div class="ranking" style="display: none;">
+        <button onclick="ranking()" class="botao-ranking">Ranking</button>
+    </div>
+
+
+</body>
+
+</html>
+
+<script>
+    let vt_cavalos = [];
+
+    let cavalos = 0;
+    let voltas = 0;
+
+    function adicionarCavalosEVoltas() {
+        cavalos = Number(ipt_qtdCavalo.value);
+        voltas = Number(ipt_qtdVoltas.value);
+
+        if (cavalos <= 1 || cavalos > 6 || cavalos % 1 > 0) {
+            alert("A quantidade de cavalos deve estar entre 2 e 6 e deve ser um numero inteiro")
+        } else if (voltas <= 0 || voltas > 10 || voltas % 1 > 0) {
+            alert("A quantidade de voltas deve estar entre 1 e 10 e deve ser um numero inteiro")
+        } else {
+            QTDS.style.display = 'none';
+            Nomes.style.display = 'flex';
+        }
+    }
+
+    function adicionarNomes() {
+        let nome_cavalo = nome_cavalos.value.trim();
+        for (let i = 0; i < cavalos; i++) {
+            if (vt_cavalos.length >= cavalos) {
+                alert("A corrida não possui esse número de cavalos! Você tentou inserir 1 a mais");
+                break;
+            } else if (nome_cavalo.length < 3) {
+                alert("Nome deve conter mais de 2 caracteres!")
+                break;
+            } else if (nome_cavalo == vt_cavalos[i]) {
+                alert("Esse nome já existe!")
+                break;
+            } else {
+                vt_cavalos.push(nome_cavalo)
+                div_msg.innerHTML = vt_cavalos;
+                break;
+            }
+        }
+        console.log(vt_cavalos)
+    }
+
+
+    function ranking() {
+
+    }
+
+    // function jogar() {
+    //     let acm1 = Number(0);
+    //     let acm2 = Number(0);
+    //     let acm3 = Number(0);
+    //     let acm4 = Number(0);
+    //     let acm5 = Number(0);
+
+    //     let primeiro = 9999;
+    //     let segundo = 9999;
+    //     let terceiro = 9999;
+
+    //     let cavaloPrimeiro = 0;
+    //     let cavaloSegundo = 0;
+    //     let cavaloTerceiro = 0;
+
+    //     let i = 0;
+
+    //     let intervalo = setInterval(() => {
+
+    //         for(i = 0; )
+
+    //         cavalo1 = Number((Math.random() * 2 + 7).toFixed(1));
+    //         cavalo2 = Number((Math.random() * 2 + 7).toFixed(1));
+    //         cavalo3 = Number((Math.random() * 2 + 7).toFixed(1));
+    //         cavalo4 = Number((Math.random() * 2 + 7).toFixed(1));
+    //         cavalo5 = Number((Math.random() * 2 + 7).toFixed(1));
+
+    //         vt_cavalo1.push(cavalo1);
+    //         vt_cavalo2.push(cavalo2);
+    //         vt_cavalo3.push(cavalo3);
+    //         vt_cavalo4.push(cavalo4);
+    //         vt_cavalo5.push(cavalo5);
+
+    //         console.log(`Cavalo 1: ${cavalo1} Cavalo 2: ${cavalo2} Cavalo 3: ${cavalo3} Cavalo 4: ${cavalo4} Cavalo 4: ${cavalo4} Cavalo 5: ${cavalo5}`)
+
+    //         acm1 += cavalo1;
+    //         acm2 += cavalo2;
+    //         acm3 += cavalo3;
+    //         acm4 += cavalo4;
+    //         acm5 += cavalo5;
+
+    //         div_msg.innerHTML = `<b> Volta: ${i + 1} </b> <br><br>
+    //     Cavalo 1 – ${cavalo1}s – ${acm1.toFixed(1)}s <br>
+    //     Cavalo 2 – ${cavalo2}s – ${acm2.toFixed(1)}s <br>
+    //     Cavalo 3 – ${cavalo3}s – ${acm3.toFixed(1)}s <br>
+    //     Cavalo 4 – ${cavalo4}s – ${acm4.toFixed(1)}s <br>
+    //     Cavalo 5 – ${cavalo5}s – ${acm5.toFixed(1)}s <br><br>
+    //     `
+
+    //         i++;
+
+    //         if (i >= 7) {
+    //             clearInterval(intervalo)
+    //         }
+
+
+    //     }, 1700);
+    //     setTimeout(() => {
+    //         vt_acm.push(acm1);
+    //         vt_acm.push(acm2);
+    //         vt_acm.push(acm3);
+    //         vt_acm.push(acm4);
+    //         vt_acm.push(acm5);
+
+    //         let ultimasVoltas = [
+    //             vt_cavalo1[6],
+    //             vt_cavalo2[6],
+    //             vt_cavalo3[6],
+    //             vt_cavalo4[6],
+    //             vt_cavalo5[6]
+    //         ];
+
+    //         let ultimaVoltaPrimeiro = 9999;
+    //         let ultimaVoltaSegundo = 9999;
+    //         let ultimaVoltaTerceiro = 9999;
+
+    //         for (let i = 0; i < vt_acm.length; i++) {
+
+    //             let tempoAtual = vt_acm[i];
+    //             let ultimaAtual = ultimasVoltas[i];
+
+    //             if (
+    //                 tempoAtual < primeiro ||
+    //                 (
+    //                     tempoAtual == primeiro &&
+    //                     ultimaAtual < ultimaVoltaPrimeiro
+    //                 )
+    //             ) {
+
+    //                 terceiro = segundo;
+    //                 cavaloTerceiro = cavaloSegundo;
+    //                 ultimaVoltaTerceiro = ultimaVoltaSegundo;
+
+    //                 segundo = primeiro;
+    //                 cavaloSegundo = cavaloPrimeiro;
+    //                 ultimaVoltaSegundo = ultimaVoltaPrimeiro;
+
+    //                 primeiro = tempoAtual;
+    //                 cavaloPrimeiro = i + 1;
+    //                 ultimaVoltaPrimeiro = ultimaAtual;
+    //             }
+
+    //             else if (
+    //                 tempoAtual < segundo ||
+    //                 (
+    //                     tempoAtual == segundo &&
+    //                     ultimaAtual < ultimaVoltaSegundo
+    //                 )
+    //             ) {
+
+    //                 terceiro = segundo;
+    //                 cavaloTerceiro = cavaloSegundo;
+    //                 ultimaVoltaTerceiro = ultimaVoltaSegundo;
+
+    //                 segundo = tempoAtual;
+    //                 cavaloSegundo = i + 1;
+    //                 ultimaVoltaSegundo = ultimaAtual;
+    //             }
+
+    //             else if (
+    //                 tempoAtual < terceiro ||
+    //                 (
+    //                     tempoAtual == terceiro &&
+    //                     ultimaAtual < ultimaVoltaTerceiro
+    //                 )
+    //             ) {
+
+    //                 terceiro = tempoAtual;
+    //                 cavaloTerceiro = i + 1;
+    //                 ultimaVoltaTerceiro = ultimaAtual;
+    //             }
+    //         }
+
+    //         div_msg.innerHTML = `1º Lugar - Cavalo ${cavaloPrimeiro} com ${primeiro.toFixed(1)}s <br>
+    //     2º Lugar - Cavalo ${cavaloSegundo} com ${segundo.toFixed(1)}s <br> 
+    //     3º Lugar - Cavalo ${cavaloTerceiro} com ${terceiro.toFixed(1)}s <br>`
+    //         if (cavalo == cavaloPrimeiro) {
+    //             if (qtd_fichasatual == 0) {
+    //                 qtd_fichasatual += 5
+    //             }
+    //             qtd_fichasatual += valor * 150 / 100
+    //             console.log(qtd_fichasatual)
+    //             div_msg.innerHTML += `<br> O Cavalo ${cavalo} foi campeão, você venceu sua aposta! Receba ${valor * 150 / 100} fichas<br>QTD fichas atual: ${qtd_fichasatual}`
+    //         }
+    //         else {
+    //             qtd_fichasatual -= valor
+    //             console.log(qtd_fichasatual)
+    //             div_msg.innerHTML += `O Cavalo ${cavalo} não foi o melhor dessa vez, você perdeu sua aposta, tente novamente...<br>QTD fichas atual: ${qtd_fichasatual}`
+    //         }
+    //     }, 12000);
+    //     ipt_cavalo.value = 0;
+    //     ipt_valor.value = ''
+    // }
+    
+
+
+
+</script>
