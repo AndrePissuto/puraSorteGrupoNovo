@@ -58,44 +58,10 @@
             CORRER!</button>
     </div>
 
-    <div style="display: none;" id="ranking" class="div-select">
-        <div class="container ranking">
-            <div class="ranking_item">
-                <div class="imagem">
-                    <img style="width: 150px;" src="img/icone-cavalo.png">
-                </div>
-                <p class="ranking__city">Segundo</p>
-                <div class="ranking_fundo">
 
-                    <div class="ranking__rank segundo">2</div>
-                </div>
-            </div>
-
-            <div class="ranking_item">
-                <div class="imagem">
-                    <img style="width: 150px;" src="img/icone-cavalo.png">
-                    <img src="img/icone-campeao.png" style="width: 140px;" alt="">
-                </div>
-                <p class="ranking__city">Primeiro Lugar</p>
-                <div class="ranking_fundo">
-
-                    <div class="ranking__rank primeiro">1
-                    </div>
-                </div>
-            </div>
-
-            <div class="ranking_item">
-                <div class="imagem">
-                    <img style="width: 150px;;" src="img/icone-cavalo.png">
-                </div>
-                <p class="ranking__city">Terceiro</p>
-                <div class="ranking_fundo">
-
-                    <div class="ranking__rank terceiro">3</div>
-                </div>
-            </div>
-        </div>
+    <div id="ranking" class="div-select ranking" style="display: none;">
     </div>
+
 </body>
 
 </html>
@@ -103,6 +69,7 @@
 <script>
     let vt_cavalos = [];
     let vt_corrida_cavalos = [];
+    let corredores = [];
 
     let cavalos = 0;
     let voltas = 0;
@@ -143,6 +110,10 @@
                     vt_cavalos.push(nome_cavalo)
                     div_msg.innerHTML = vt_cavalos;
                     document.getElementById("titulo-turfe").style.display = "none";
+
+                    nome_cavalos.value = "";
+                    nome_cavalos.focus();
+
                     console.log(vt_cavalos)
                     break;
                 }
@@ -154,11 +125,8 @@
 
         pista.innerHTML = "";
         corredores = [];
-
         let qtd = vt_cavalos.length;
-
         for (let i = 0; i < qtd; i++) {
-
             pista.innerHTML += `
             <div class="raia">
                 <img
@@ -170,15 +138,15 @@
         }
 
         for (let i = 0; i < qtd; i++) {
-
             corredores.push({
-                nome: `Cavalo ${i + 1}`,
+                nome: vt_cavalos[i],
                 posicao: 0,
                 elemento: document.getElementById(`c${i}`)
             });
 
         }
     }
+
 
     function iniciarCorrida() {
 
@@ -192,13 +160,9 @@
         let voltaAtual = 0;
 
         let intervalo = setInterval(() => {
-
             for (let corredor of corredores) {
-
                 let sorteio = Math.floor(Math.random() * 10) + 1;
-
                 corredor.posicao += sorteio * 15;
-
                 corredor.elemento.style.transform =
                     `translateX(${corredor.posicao}px)`;
             }
@@ -206,7 +170,6 @@
             voltaAtual++;
 
             if (voltaAtual >= voltas) {
-
                 clearInterval(intervalo);
                 document.getElementById("corrida").style.display = "none";
                 mostrarResultado();
@@ -216,22 +179,34 @@
 
     }
 
+    function ranking() {
+        let rankingFinal = [];
+        for (let i = 0; i < vt_cavalos.length; i++) {
+            rankingFinal.push({
+                nome: vt_cavalos[i],
+                velocidade: vt_corrida_cavalos[i] || 0
+            });
+        }
+
+        rankingFinal.sort((a, b) => b.velocidade - a.velocidade);
+        let html = "<h2>Ranking Final</h2>";
+        for (let i = 0; i < rankingFinal.length; i++) {
+            html += `${i + 1}º - ${rankingFinal[i].nome} (${rankingFinal[i].velocidade})<br>`;
+        }
+
+        div_msg.innerHTML = html;
+    }
+
+
     function mostrarResultado() {
 
-        document.getElementById("div_principal").style.display = "none";
-        document.getElementById("ranking").style.display = "flex";
-
         corredores.sort((a, b) => b.posicao - a.posicao);
+        localStorage.setItem("rankingFinal", JSON.stringify(corredores));
+        window.location.href = "ranking.html";
+    }
 
-        console.log("Vencedor:", corredores[0].nome);
-
-        for (let i = 0; i < corredores.length; i++) {
-
-            console.log(
-                `${i + 1}° lugar - ${corredores[i].nome}`
-            );
-
-        }
+    function irParaRanking() {
+        window.location.href = "ranking.html";
     }
 
 

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="ranking.css">
+
+    <title>Ranking</title>
+</head>
+
+<body class="body_menu">
+
+    <div class="titulo">
+        <!-- <img src="img/Logo.png" alt=""> -->
+        <img src="img/campeoes.png" alt="">
+    </div>
+
+    <div class="container-conteudo">
+
+        <div class="podio">
+            <div class="ranking_item">
+                <img class="cavalo" src="img/icone-cavalo.png">
+                <h3 id="nomeSegundo">Segundo</h3>
+                <div class="ranking__rank segundo">
+                    2
+                </div>
+
+            </div>
+
+            <div class="ranking_item campeao">
+                <img class="trofeu" src="img/icone-campeao.png">
+                <img class="cavalo vencedor" src="img/icone-cavalo.png">
+                <h3 id="nomePrimeiro">Primeiro</h3>
+                <div class="ranking__rank primeiro">
+                    1
+                </div>
+
+            </div>
+
+            <div class="ranking_item">
+                <img class="cavalo" src="img/icone-cavalo.png">
+                <h3 id="nomeTerceiro">Terceiro</h3>
+                <div class="ranking__rank terceiro">
+                    3
+                </div>
+
+            </div>
+
+        </div>
+
+         <p><button class="botao-reiniciar" onclick="jogarNovamente()">
+                Jogar novamente
+            </button></p>
+
+
+
+    </div>
+
+    <audio autoplay>
+        <source src="audio/vitoria.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+
+        function irParaRanking() {
+            window.location.href = "ranking.html";
+        }
+
+        const resultado = JSON.parse(localStorage.getItem("rankingFinal"));
+
+        if (resultado && resultado.length >= 3) {
+            document.getElementById("nomePrimeiro").innerText = resultado[0].nome;
+            document.getElementById("nomeSegundo").innerText = resultado[1].nome;
+            document.getElementById("nomeTerceiro").innerText = resultado[2].nome;
+        }
+
+
+        function jogarNovamente() {
+            window.location.href = "insercaoCavalos.html";
+        }
+    </script>
+
+</body>
+
+</html>
