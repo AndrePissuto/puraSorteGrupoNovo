@@ -170,9 +170,11 @@
             voltaAtual++;
 
             if (voltaAtual >= voltas) {
+                setTimeout(() => {
                 clearInterval(intervalo);
                 document.getElementById("corrida").style.display = "none";
-                mostrarResultado();
+                    mostrarResultado();
+                }, 5000);
             }
 
         }, 1000);
