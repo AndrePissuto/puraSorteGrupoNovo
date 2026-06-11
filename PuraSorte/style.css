@@ -43,8 +43,10 @@ body.body_menu {
 .btn_opcoes, .btn_voltar {
     font-size: 22px;
     font-family: "Pixelify Sans", sans-serif;
-    margin: 3%;
-    width: 280px;
+    margin: 10px;
+    width: 480px;
+
+    padding: 16px 24px 16px 24px;
 
     background-color: goldenrod;
     text-shadow: 2px;

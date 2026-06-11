@@ -4,18 +4,16 @@ body{
 
 .container-conteudo{
     width:90vw;
-    height:550px;
-    margin-top:30px;
-    background:linear-gradient(
-        to bottom,
-        #f4c542,
-        #d89f00
-    );
-    border:4px solid #000000;
+    height:650px;
+
+    justify-content: center;
+    justify-self: center;
+
     padding:12px;
     border-radius:12px;
-    box-shadow:
-    0 10px 30px rgba(0,0,0,.5);
+
+    display: flex;
+    flex-direction: column;
 }
 
 .podio{
@@ -27,7 +25,8 @@ body{
         #2B2D42 60%
     );
 
-    border:4px solid #000000;
+    border:8px solid goldenrod;
+
     display:flex;
     justify-content:center;
     align-items:flex-end;
@@ -35,6 +34,7 @@ body{
     border-radius:10px;
     overflow:hidden;
     position:relative;
+    padding: 16px 0px 16px 0px;
 }
 
 .podio::after{
@@ -158,10 +158,12 @@ body{
         0 -4px 0 #000,
         8px 8px 0 rgba(0, 0, 0, 0.3);
     font-size: 180%;
+    transition: 0.5s ease;
 }
 
 .botao-reiniciar:hover {
     background: #ffdb4d;
+    scale: 1.025;
 }
 
 
@@ -197,4 +199,9 @@ body{
     100%{
         transform:translateY(0);
     }
+}
+
+.titulo img{
+    width: 400px;
+    height: auto;
 }

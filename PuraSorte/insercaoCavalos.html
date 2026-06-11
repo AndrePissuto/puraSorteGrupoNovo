@@ -48,6 +48,7 @@
                 <div id="pista" class="pista"></div>
             </div>
 
+
         </div>
 
         <button id="btn-add" class="botao-apostar" onclick="adicionarCavalosEVoltas()">ADICIONAR</button>
@@ -55,6 +56,7 @@
             NOME</button>
         <button style="display: none;" id="btn-corrida" class="botao-apostar" onclick="iniciarCorrida()">VAMOS
             CORRER!</button>
+        <button style="background-color: rgba(255, 255, 255, 0.706);" class="btn_voltar" onclick="window.location.href='./Menu.html'">Voltar ao menu principal</button>
     </div>
 
 
@@ -72,6 +74,9 @@
 
     let cavalos = 0;
     let voltas = 0;
+
+    let alturaUtil = 600 - 90 - 70;
+    let alturaRaia = alturaUtil / Number(ipt_qtdCavalo.value);
 
     function adicionarCavalosEVoltas() {
         cavalos = Number(ipt_qtdCavalo.value);
@@ -131,14 +136,15 @@
         corredores = [];
         let qtd = vt_cavalos.length;
         for (let i = 0; i < qtd; i++) {
+
             pista.innerHTML += `
-            <div class="raia">
+            <div class="raia" style="height:${alturaRaia}px">
                 <img
                     id="c${i}"
                     class="cavalo"
                     src="./img/spirit-pixel.gif">
             </div>
-        `;
+            `;
         }
 
         for (let i = 0; i < qtd; i++) {
