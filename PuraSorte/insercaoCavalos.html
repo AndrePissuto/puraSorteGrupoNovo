@@ -91,34 +91,38 @@
         }
     }
 
+
+
+
     function adicionarNomes() {
         let nome_cavalo = nome_cavalos.value.trim();
         console.log(cavalos)
         console.log(vt_cavalos)
-        if (vt_cavalos.length >= cavalos) {
-            document.getElementById("nomes").style.display = "none";
-            document.getElementById("btn-add-nome").style.display = "none";
-            document.getElementById("btn-corrida").style.display = "block";
-        } else {
-            for (let i = 0; vt_cavalos.length < cavalos; i++) {
-                if (nome_cavalo.length < 3) {
-                    alert("Nome deve conter mais de 2 caracteres!")
-                    break;
-                } else if (nome_cavalo == vt_cavalos[i]) {
-                    alert("Esse nome já existe!")
-                    break;
-                } else {
-                    vt_cavalos.push(nome_cavalo)
-                    div_msg.innerHTML = vt_cavalos;
-                    document.getElementById("titulo-turfe").style.display = "none";
 
-                    nome_cavalos.value = "";
-                    nome_cavalos.focus();
+        for (let i = 0; i < cavalos; i++) {
+            if (nome_cavalo.length < 3) {
+                alert("Nome deve conter mais de 2 caracteres!")
+                break;
+            } else if (nome_cavalo == vt_cavalos[i]) {
+                alert("Esse nome já existe!")
+                break;
+            } else {
+                vt_cavalos.push(nome_cavalo)
+                div_msg.innerHTML = vt_cavalos;
+                document.getElementById("titulo-turfe").style.display = "none";
 
-                    console.log(vt_cavalos)
-                    break;
+                nome_cavalos.value = "";
+                nome_cavalos.focus();
+
+                console.log(vt_cavalos)
+                if (vt_cavalos.length == cavalos) {
+                    document.getElementById("nomes").style.display = "none";
+                    document.getElementById("btn-add-nome").style.display = "none";
+                    document.getElementById("btn-corrida").style.display = "block";
                 }
+                break;
             }
+
         }
     }
 
@@ -150,6 +154,7 @@
 
 
     function iniciarCorrida() {
+        let sorteio = 0;
 
         document.getElementById("corrida").style.display = "flex";
         document.getElementById("btn-corrida").style.display = "none";
@@ -162,7 +167,7 @@
 
         let intervalo = setInterval(() => {
             for (let corredor of corredores) {
-                let sorteio = Math.floor(Math.random() * 10) + 1;
+                sorteio = Math.floor(Math.random() * 10) + 1;
                 corredor.posicao += sorteio * 15;
                 corredor.elemento.style.transform =
                     `translateX(${corredor.posicao}px)`;
@@ -172,8 +177,8 @@
 
             if (voltaAtual >= voltas) {
                 setTimeout(() => {
-                clearInterval(intervalo);
-                document.getElementById("corrida").style.display = "none";
+                    clearInterval(intervalo);
+                    document.getElementById("corrida").style.display = "none";
                     mostrarResultado();
                 }, 5000);
             }
