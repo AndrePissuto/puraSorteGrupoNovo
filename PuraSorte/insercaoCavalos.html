@@ -78,8 +78,8 @@
         cavalos = Number(ipt_qtdCavalo.value);
         voltas = Number(ipt_qtdVoltas.value);
 
-        if (cavalos <= 1 || cavalos > 6 || cavalos % 1 > 0) {
-            alert("A quantidade de cavalos deve estar entre 2 e 6 e deve ser um numero inteiro")
+        if (cavalos <= 2 || cavalos > 6 || cavalos % 1 > 0) {
+            alert("A quantidade de cavalos deve estar entre 3 e 6 e deve ser um numero inteiro")
         } else if (voltas <= 0 || voltas > 10 || voltas % 1 > 0) {
             alert("A quantidade de voltas deve estar entre 1 e 10 e deve ser um numero inteiro")
         } else {
@@ -93,13 +93,14 @@
 
     function adicionarNomes() {
         let nome_cavalo = nome_cavalos.value.trim();
-
+        console.log(cavalos)
+        console.log(vt_cavalos)
         if (vt_cavalos.length >= cavalos) {
             document.getElementById("nomes").style.display = "none";
             document.getElementById("btn-add-nome").style.display = "none";
             document.getElementById("btn-corrida").style.display = "block";
         } else {
-            for (let i = 0; i < cavalos; i++) {
+            for (let i = 0; vt_cavalos.length < cavalos; i++) {
                 if (nome_cavalo.length < 3) {
                     alert("Nome deve conter mais de 2 caracteres!")
                     break;
@@ -181,8 +182,9 @@
 
     }
 
+    let rankingFinal = [];
     function ranking() {
-        let rankingFinal = [];
+        rankingFinal = [];
         for (let i = 0; i < vt_cavalos.length; i++) {
             rankingFinal.push({
                 nome: vt_cavalos[i],
